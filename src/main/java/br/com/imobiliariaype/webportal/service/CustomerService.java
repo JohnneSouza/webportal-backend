@@ -45,10 +45,7 @@ public class CustomerService {
 
     public Customer findById(String id) {
         Optional<Customer> foundCustomer = customerRepository.findById(id);
-        if (!foundCustomer.isEmpty()) {
-            return foundCustomer.get();
-        }
-        return null;
+        return foundCustomer.orElse(null);
     }
 
     public Customer save(Customer customer) {

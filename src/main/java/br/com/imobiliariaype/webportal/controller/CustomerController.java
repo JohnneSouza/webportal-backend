@@ -3,7 +3,9 @@ package br.com.imobiliariaype.webportal.controller;
 import br.com.imobiliariaype.webportal.model.Billing;
 import br.com.imobiliariaype.webportal.model.Customer;
 import br.com.imobiliariaype.webportal.service.CustomerService;
+import br.com.imobiliariaype.webportal.utils.HeaderUtils;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +25,8 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity findAll(Pageable pageable){
-        HttpHeaders header = new HttpHeaders();
-        header.add("X-Total-Count", String.valueOf(customerService.findAll(pageable).getTotalPages()));
-        header.add("Access-Control-Expose-Headers", "X-Total-Count");
         return ResponseEntity.ok()
-        .headers(header)
+        .headers(HeaderUtils.getTotalCount(customerService.findAll(pageable).getTotalPages()))
         .body(customerService.findAll(pageable).toList());
     }
 
