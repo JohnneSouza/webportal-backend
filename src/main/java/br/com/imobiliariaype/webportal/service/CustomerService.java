@@ -27,20 +27,16 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Iterable<Customer> findAll(){
-        return customerRepository.findAll();
-    }
-
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
 
-    public Customer findByName(String name) {
+    public List<Customer> findByName(String name) {
         return customerRepository.findByName(name);
     }
 
     public Customer findByAddress(String address) {
-        return customerRepository.findByAddress(address);
+        return customerRepository.findByAddress_Street(address);
     }
 
     public Customer findById(String id) {
@@ -64,7 +60,7 @@ public class CustomerService {
         Customer currentCustomer = findById(id);
         if (currentCustomer != null) {
             currentCustomer.setName(updatedCustomer.getName());
-            currentCustomer.setId_document(updatedCustomer.getId_document());
+            currentCustomer.setDocument(updatedCustomer.getDocument());
             currentCustomer.setPhone(updatedCustomer.getPhone());
             currentCustomer.setEmail(updatedCustomer.getEmail());
             currentCustomer.setAddress(updatedCustomer.getAddress());
@@ -78,7 +74,7 @@ public class CustomerService {
 
     public List<Billing> getCurrentBillingByDate(String initialDate, String finalDate) {
         try {
-            return customerRepository.getCurrentBillingByDate(sdf.parse(initialDate), sdf.parse(finalDate));
+            return customerRepository.findByCurrentBilling(sdf.parse(initialDate), sdf.parse(finalDate));
         } catch (ParseException e) {
             logger.error("Error Converting Date", e);
             return null;

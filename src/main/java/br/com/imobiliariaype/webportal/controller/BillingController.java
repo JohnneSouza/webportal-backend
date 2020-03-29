@@ -18,7 +18,7 @@ public class BillingController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity addBilling(@PathVariable String id, @RequestParam("value") Double value,
+    public ResponseEntity<Customer> addBilling(@PathVariable String id, @RequestParam("value") Double value,
                                      @RequestParam("dueDate") String dueDate,
                                      @RequestParam("description") String description){
 

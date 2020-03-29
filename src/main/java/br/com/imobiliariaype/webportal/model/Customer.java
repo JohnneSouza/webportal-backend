@@ -15,11 +15,18 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Customer {
 
+    public Customer() {
+    }
+
+    public Customer(String id) {
+        this.id = id;
+    }
+
     @Id
     private String id;
     @NotNull(message = "name must not be null")
     private String name;
-    private String id_document;
+    private String document;
     @NotNull(message = "phone must not be null")
     private String phone;
     private String email;

@@ -5,12 +5,11 @@ import br.com.imobiliariaype.webportal.model.Customer;
 import br.com.imobiliariaype.webportal.service.CustomerService;
 import br.com.imobiliariaype.webportal.utils.HeaderUtils;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -36,7 +35,7 @@ public class CustomerController {
     }
 
     @GetMapping("/searchByName/{name}")
-    public Customer findByName(@PathVariable String name){
+    public List<Customer> findByName(@PathVariable String name){
         return customerService.findByName(name);
     }
 
