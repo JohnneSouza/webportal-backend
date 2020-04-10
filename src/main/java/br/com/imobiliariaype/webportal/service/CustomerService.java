@@ -35,14 +35,6 @@ public class CustomerService {
         return customerRepository.findAll(pageable);
     }
 
-    public Customer findByName(String name) {
-        return customerRepository.findByName(name);
-    }
-
-    public Customer findByAddress(String address) {
-        return customerRepository.findByAddress(address);
-    }
-
     public Customer findById(String id) {
         Optional<Customer> foundCustomer = customerRepository.findById(id);
         if (!foundCustomer.isEmpty()) {
@@ -77,14 +69,5 @@ public class CustomerService {
         }
 
         return null;
-    }
-
-    public List<Billing> getCurrentBillingByDate(String initialDate, String finalDate) {
-        try {
-            return customerRepository.getCurrentBillingByDate(sdf.parse(initialDate), sdf.parse(finalDate));
-        } catch (ParseException e) {
-            logger.error("Error Converting Date", e);
-            return null;
-        }
     }
 }
