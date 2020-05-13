@@ -1,6 +1,5 @@
 package br.com.imobiliariaype.webportal.controller;
 
-import br.com.imobiliariaype.webportal.model.Billing;
 import br.com.imobiliariaype.webportal.model.Customer;
 import br.com.imobiliariaype.webportal.service.CustomerService;
 import br.com.imobiliariaype.webportal.utils.HeadersUtils;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/v1/customers")

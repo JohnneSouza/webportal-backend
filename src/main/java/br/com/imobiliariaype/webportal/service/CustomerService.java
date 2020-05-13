@@ -1,6 +1,5 @@
 package br.com.imobiliariaype.webportal.service;
 
-import br.com.imobiliariaype.webportal.model.Billing;
 import br.com.imobiliariaype.webportal.model.Customer;
 import br.com.imobiliariaype.webportal.repository.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
@@ -9,13 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CustomerService {
+
+    private static final String CUSTOMER_NOT_FOUND = "[] CUSTOMER NOT FOUND";
 
     private static Logger logger = LogManager.getLogger(CustomerService.class);
 
@@ -37,9 +36,11 @@ public class CustomerService {
 
     public Customer findById(String id) {
         Optional<Customer> foundCustomer = customerRepository.findById(id);
-        if (!foundCustomer.isEmpty()) {
+        if (foundCustomer.isPresent()) {
             return foundCustomer.get();
         }
+
+        logger.info(CUSTOMER_NOT_FOUND, id);
         return null;
     }
 
@@ -52,6 +53,8 @@ public class CustomerService {
             customerRepository.deleteById(id);
             return new Customer();
         }
+
+        logger.info(CUSTOMER_NOT_FOUND, id);
         return null;
     }
 

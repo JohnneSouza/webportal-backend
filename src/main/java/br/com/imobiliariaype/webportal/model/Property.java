@@ -17,8 +17,7 @@ public class Property {
 
     @Id
     private String id;
-    @NotNull
-    private String personId;
+    private String customer_id;
     private Float sellingPrice;
     private String additionalData;
     private Address address;
