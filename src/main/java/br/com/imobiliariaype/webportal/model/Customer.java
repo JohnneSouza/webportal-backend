@@ -19,7 +19,7 @@ public class Customer {
     private String id;
     @NotNull(message = "name must not be null")
     private String name;
-    private String id_document;
+    private String document;
     @NotNull(message = "phone must not be null")
     private String phone;
     private String email;

@@ -45,6 +45,6 @@ public class PropertyController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id){
-        propertyService.deleteById(id);
+        propertyService.sellProperty(id);
     }
 }

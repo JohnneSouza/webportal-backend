@@ -62,7 +62,7 @@ public class CustomerService {
         Customer currentCustomer = findById(id);
         if (currentCustomer != null) {
             currentCustomer.setName(updatedCustomer.getName());
-            currentCustomer.setId_document(updatedCustomer.getId_document());
+            currentCustomer.setDocument(updatedCustomer.getDocument());
             currentCustomer.setPhone(updatedCustomer.getPhone());
             currentCustomer.setEmail(updatedCustomer.getEmail());
             currentCustomer.setAddress(updatedCustomer.getAddress());

@@ -18,12 +18,14 @@ public class PropertyService {
 
     private PropertyRepository propertyRepository;
     private CustomerRepository customerRepository;
+    private SoldPropertyService soldPropertyService;
 
     private static Logger logger = LogManager.getLogger(PropertyService.class);
 
-    public PropertyService(PropertyRepository propertyRepository, CustomerRepository customerRepository) {
+    public PropertyService(PropertyRepository propertyRepository, CustomerRepository customerRepository, SoldPropertyService soldPropertyService) {
         this.propertyRepository = propertyRepository;
         this.customerRepository = customerRepository;
+        this.soldPropertyService = soldPropertyService;
     }
 
     public Page<Property> findAll(Pageable pageable){
@@ -46,7 +48,9 @@ public class PropertyService {
         return foundProperty.orElse(null);
     }
 
-    public void deleteById(String id){
-        propertyRepository.deleteAll();
+    public void sellProperty(String id){
+        Property found = findById(id);
+
+        propertyRepository.deleteById(id);
     }
 }
