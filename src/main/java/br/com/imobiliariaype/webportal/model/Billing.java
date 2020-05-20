@@ -14,7 +14,7 @@ public class Billing {
 
     @Id
     private String id;
-    private String personId;
+    private String customer_id;
     private String registerDate;
     private String dueDate;
     private String description;

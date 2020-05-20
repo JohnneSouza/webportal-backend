@@ -1,13 +1,12 @@
 package br.com.imobiliariaype.webportal.controller;
 
+import br.com.imobiliariaype.webportal.model.Billing;
 import br.com.imobiliariaype.webportal.service.BillingService;
 import br.com.imobiliariaype.webportal.utils.HeadersUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/billing")
@@ -26,5 +25,21 @@ public class BillingController {
         return ResponseEntity.ok()
                 .headers(header)
                 .body(billingService.findAll(pageable).toList());
+    }
+
+    @GetMapping("/{id}")
+    public Billing findById(@PathVariable String id){
+
+        return billingService.findById(id);
+    }
+
+    @PostMapping
+    public Billing createBilling(@RequestBody Billing billing){
+        return billingService.createNew(billing);
+    }
+
+    @DeleteMapping("/{id}")
+    public Billing deleteBilling(@PathVariable String id){
+        return billingService.deleteById(id);
     }
 }
