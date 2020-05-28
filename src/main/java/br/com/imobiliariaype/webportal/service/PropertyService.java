@@ -2,8 +2,11 @@ package br.com.imobiliariaype.webportal.service;
 
 import br.com.imobiliariaype.webportal.model.Customer;
 import br.com.imobiliariaype.webportal.model.Property;
+import br.com.imobiliariaype.webportal.model.SoldProperty;
 import br.com.imobiliariaype.webportal.repository.CustomerRepository;
 import br.com.imobiliariaype.webportal.repository.PropertyRepository;
+import br.com.imobiliariaype.webportal.repository.SoldPropertyRepository;
+import br.com.imobiliariaype.webportal.translator.PropertyTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Page;
@@ -18,14 +21,14 @@ public class PropertyService {
 
     private PropertyRepository propertyRepository;
     private CustomerRepository customerRepository;
-    private SoldPropertyService soldPropertyService;
+    private SoldPropertyRepository soldPropertyRepository;
 
     private static Logger logger = LogManager.getLogger(PropertyService.class);
 
-    public PropertyService(PropertyRepository propertyRepository, CustomerRepository customerRepository, SoldPropertyService soldPropertyService) {
+    public PropertyService(PropertyRepository propertyRepository, CustomerRepository customerRepository, SoldPropertyRepository soldPropertyRepository) {
         this.propertyRepository = propertyRepository;
         this.customerRepository = customerRepository;
-        this.soldPropertyService = soldPropertyService;
+        this.soldPropertyRepository = soldPropertyRepository;
     }
 
     public Page<Property> findAll(Pageable pageable){
@@ -50,7 +53,9 @@ public class PropertyService {
 
     public void sellProperty(String id){
         Property found = findById(id);
+        SoldProperty soldProperty = PropertyTranslator.translateToProperty(found);
 
         propertyRepository.deleteById(id);
+        soldPropertyRepository.save(soldProperty);
     }
 }

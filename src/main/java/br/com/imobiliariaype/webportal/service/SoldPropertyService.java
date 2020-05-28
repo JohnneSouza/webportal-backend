@@ -1,6 +1,6 @@
 package br.com.imobiliariaype.webportal.service;
 
-import br.com.imobiliariaype.webportal.model.Property;
+import br.com.imobiliariaype.webportal.model.SoldProperty;
 import br.com.imobiliariaype.webportal.repository.SoldPropertyRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +17,7 @@ public class SoldPropertyService {
     }
 
     @GetMapping
-    public Page<Property> findAll(Pageable pageable){
+    public Page<SoldProperty> findAll(Pageable pageable){
         return soldPropertyRepository.findAll(pageable);
     }
 }

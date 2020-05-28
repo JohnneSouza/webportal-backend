@@ -34,17 +34,22 @@ public class PropertyController {
         return propertyService.findById(id);
     }
 
-    @PostMapping("/{customer_id}")
-    public ResponseEntity save(Pageable pageable, @PathVariable String customer_id, @RequestBody @Valid Property property){
-        HttpHeaders header = HeadersUtils.pageAmountTotalCount(propertyService.findAll(pageable).getTotalPages());
+    @PostMapping
+    public ResponseEntity save(@RequestBody @Valid Property property){
+        HttpHeaders header = HeadersUtils.CORS_RESPONSE();
 
         return ResponseEntity.ok()
         .headers(header)
-        .body(propertyService.save(customer_id, property));
+        .body(propertyService.save(property.getCustomer_id(), property));
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id){
+        propertyService.sellProperty(id);
+    }
+
+    @DeleteMapping("/sell/{id}")
+    public void sellProperty(@PathVariable String id) {
         propertyService.sellProperty(id);
     }
 }

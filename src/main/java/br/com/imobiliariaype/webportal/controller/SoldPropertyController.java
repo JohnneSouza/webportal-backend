@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/soldProperty")
+@RequestMapping("v1/soldProperty")
 public class SoldPropertyController {
 
     private SoldPropertyService soldPropertyService;
