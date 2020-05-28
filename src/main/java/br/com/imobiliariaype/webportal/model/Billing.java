@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Document("billing")
@@ -16,9 +18,9 @@ public class Billing {
     private String id;
     private String customer_id;
     private String registerDate;
-    private String dueDate;
+    private Date dueDate;
     private String description;
     private Double value;
-    private String paymentDate;
+    private Date paymentDate;
 
 }

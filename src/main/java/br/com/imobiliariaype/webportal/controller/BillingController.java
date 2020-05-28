@@ -42,4 +42,9 @@ public class BillingController {
     public Billing deleteBilling(@PathVariable String id){
         return billingService.deleteById(id);
     }
+
+    @DeleteMapping("/pay/{id}")
+    public void payBill(@PathVariable String id){
+        billingService.payBilling(id);
+    }
 }

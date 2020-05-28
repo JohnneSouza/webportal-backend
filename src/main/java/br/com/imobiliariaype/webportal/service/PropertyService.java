@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -39,6 +40,7 @@ public class PropertyService {
         Optional<Customer> foundCustomer = customerRepository.findById(personId);
         if (foundCustomer.isPresent()){
             property.setCustomer_id(personId);
+            property.setRegisterDate(new Date());
             return propertyRepository.save(property);
         }
 
@@ -53,7 +55,7 @@ public class PropertyService {
 
     public void sellProperty(String id){
         Property found = findById(id);
-        SoldProperty soldProperty = PropertyTranslator.translateToProperty(found);
+        SoldProperty soldProperty = PropertyTranslator.translateToSoldProperty(found);
 
         propertyRepository.deleteById(id);
         soldPropertyRepository.save(soldProperty);

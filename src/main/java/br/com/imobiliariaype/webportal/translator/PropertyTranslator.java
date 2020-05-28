@@ -10,7 +10,7 @@ public class PropertyTranslator {
     private PropertyTranslator() {
     }
 
-    public static SoldProperty translateToProperty(Property property){
+    public static SoldProperty translateToSoldProperty(Property property){
 
         SoldProperty sold = new SoldProperty();
 
