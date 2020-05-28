@@ -24,4 +24,8 @@ public class SoldPropertyService {
     public Optional<SoldProperty> findById(String id){
         return soldPropertyRepository.findById(id);
     }
+
+    public void deleteById(String id){
+        soldPropertyRepository.deleteById(id);
+    }
 }

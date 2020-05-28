@@ -6,10 +6,7 @@ import br.com.imobiliariaype.webportal.utils.HeadersUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -38,5 +35,10 @@ public class SoldPropertyController {
         Optional<SoldProperty> found = soldPropertyService.findById(id);
         return found.orElse(null);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteSoldProperty(@PathVariable String id){
+        soldPropertyService.deleteById(id);
     }
 }
