@@ -5,7 +5,8 @@ import br.com.imobiliariaype.webportal.repository.SoldPropertyRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
 
 @Service
 public class SoldPropertyService {
@@ -16,8 +17,11 @@ public class SoldPropertyService {
         this.soldPropertyRepository = soldPropertyRepository;
     }
 
-    @GetMapping
     public Page<SoldProperty> findAll(Pageable pageable){
         return soldPropertyRepository.findAll(pageable);
+    }
+
+    public Optional<SoldProperty> findById(String id){
+        return soldPropertyRepository.findById(id);
     }
 }
